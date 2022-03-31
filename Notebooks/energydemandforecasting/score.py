@@ -75,5 +75,4 @@ def run(energy):
         # you can return any data type as long as it is JSON-serializable
         return prediction
     except Exception as e:
-        error = str(e)
-        return error
+        return str(e)
