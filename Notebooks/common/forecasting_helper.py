@@ -45,10 +45,8 @@ def align_outputs(
     X_test_full = X_test_full.reset_index().drop(columns="index")
     together = df_fcst.merge(X_test_full, how="right")
 
-    # drop rows where prediction or actuals are nan
-    # happens because of missing actuals
-    # or at edges of time due to lags/rolling windows
-    clean = together[
-        together[[target_column_name, predicted_column_name]].notnull().all(axis=1)
+    return together[
+        together[[target_column_name, predicted_column_name]]
+        .notnull()
+        .all(axis=1)
     ]
-    return clean
